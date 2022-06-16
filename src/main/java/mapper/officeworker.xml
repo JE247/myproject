@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.jhta.mapper">
+
+	<select id="loginOk" parameterType="ovo" resultType="ovo">
+		SELECT * FROM OFFICEWORKER WHERE ENO = #{eno} AND PASSWORD = #{password}
+	</select>
+	<select id="myInfo" parameterType="int" resultType="ovo">
+		SELECT * FROM OFFICEWORKER WHERE ENO = #{eno}
+	</select>
+
+</mapper>
