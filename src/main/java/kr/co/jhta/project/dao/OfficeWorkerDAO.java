@@ -15,9 +15,29 @@ public class OfficeWorkerDAO {
 		factory = ConnectionManager.getInstance().getFactory();
 	}
 	
+	public List<OfficeWorkerDTO> getAll(){
+		SqlSession ss = factory.openSession(true);
+		List<OfficeWorkerDTO> list = ss.selectList("kr.co.jhta.mapper.getAll");
+		ss.close();
+		return list;
+	}
+	public List<OfficeWorkerDTO> getFilter(OfficeWorkerDTO dto){
+		SqlSession ss = factory.openSession(true);
+		List<OfficeWorkerDTO> list = ss.selectList("kr.co.jhta.mapper.getFilter", dto);
+		ss.close();
+		return list;
+	}
+	
+	
+	
+	public List<String> getPosition(){
+		SqlSession ss = factory.openSession(true);
+		List<String> list = ss.selectList("kr.co.jhta.mapper.getposition");
+		ss.close();
+		return list;
+	}
+	
 	public OfficeWorkerDTO login(OfficeWorkerDTO logdto) {
-		
-		
 		SqlSession ss = factory.openSession(true);
 		OfficeWorkerDTO dto = ss.selectOne("kr.co.jhta.mapper.loginOk", logdto);
 		
@@ -26,11 +46,16 @@ public class OfficeWorkerDAO {
 	}
 	
 	public OfficeWorkerDTO myInfo(int eno) {
-		
 		SqlSession ss = factory.openSession(true);
 		OfficeWorkerDTO dto = ss.selectOne("kr.co.jhta.mapper.myInfo", eno);
 		
 		ss.close();
 		return dto;
+	}
+	
+	public void editInfo(OfficeWorkerDTO dto) {
+		SqlSession ss = factory.openSession(true);
+		ss.update("kr.co.jhta.mapper.editInfo", dto);
+		ss.close();
 	}
 }

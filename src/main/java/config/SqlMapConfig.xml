@@ -7,6 +7,7 @@
 	<!-- 별칭 사용 -->
 	<typeAliases>
 		<typeAlias type="kr.co.jhta.project.dto.OfficeWorkerDTO" alias="ovo"/>
+		<typeAlias type="kr.co.jhta.project.dto.DepartmentDTO" alias="dvo"/>
 	</typeAliases>
 	<environments default="dev">
 		<environment id="dev">
@@ -21,5 +22,6 @@
 	</environments>
 	<mappers>
 		<mapper resource="mapper/officeworker.xml" />
+		<mapper resource="mapper/department.xml" />
 	</mappers>
 </configuration>

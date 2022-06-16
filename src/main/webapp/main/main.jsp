@@ -24,15 +24,6 @@
 <style>
 @charset "UTF-8";
 
-/* * {
-	margin: 0px;
-	padding: 0px;
-}
-
-.container {
-	margin: 10px auto;
-} */
-
 .contents {
 	margin: 30px auto;
 	display: flex;
@@ -145,21 +136,20 @@
 </head>
 <body>
  <div class="container">
-
-        <jsp:include page="../tag//header.jsp"></jsp:include>
+        <jsp:include page="../tag/header.jsp"></jsp:include>
         <div class="contents">
             <div class="myinfo">
                 <div class="my">
-                	<c:if test="${logindto.photoname eq null }">
+                	<c:if test="${maindto.photoname eq null }">
                 		<img class="profile" src="images/myinfo/basic.gif" alt="" />
                 	</c:if>
-                	<c:if test="${logindto.photoname ne null }">
-                		<img class="profile" src="images/myinfo/${logindto.photoname}" alt="" />
+                	<c:if test="${maindto.photoname ne null }">
+                		<img class="profile" src="images/myinfo/${maindto.photoname}" alt="" />
                 	</c:if>
-                	<p>${logindto.name}님 <br> 환영합니다.</p>
+                	<p>${maindto.name}님 <br> 환영합니다.</p>
                 </div>
                 <div class="buttons" style="text-align: center;">
-                    <input type="button" value="내 정보확인">
+                    <a href="MyProject.do?cmd=myinfo"><input type="button" value="내 정보확인"></a>
                     <a href="MyProject.do?cmd=logout"><input type="button" value="로그아웃"></a>
                 </div>
                 <div id="calendar"></div>

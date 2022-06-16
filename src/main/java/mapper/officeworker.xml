@@ -4,11 +4,51 @@
 
 <mapper namespace="kr.co.jhta.mapper">
 
+	<select id="getAll" resultType="ovo">
+		SELECT * FROM OFFICEWORKER
+	</select>
+
 	<select id="loginOk" parameterType="ovo" resultType="ovo">
-		SELECT * FROM OFFICEWORKER WHERE ENO = #{eno} AND PASSWORD = #{password}
+		SELECT *
+		FROM OFFICEWORKER WHERE ENO = #{eno} AND PASSWORD = #{password}
 	</select>
+	
 	<select id="myInfo" parameterType="int" resultType="ovo">
-		SELECT * FROM OFFICEWORKER WHERE ENO = #{eno}
+		SELECT * FROM
+		OFFICEWORKER WHERE ENO = #{eno}
 	</select>
+	
+	<select id="getposition" resultType="String">
+		SELECT POSITION FROM OFFICEWORKER GROUP BY POSITION
+	</select>
+	
+	<select id="getFilter" resultType="ovo" parameterType="ovo">
+		SELECT * FROM OFFICEWORKER
+		
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			
+			<if test="dno != 0">
+				AND DNO = #{dno}
+			</if>
+			<if test="position != null and position != '' ">
+				AND POSITION = #{position}
+			</if>
+		
+		</trim>
+		
+	</select>
+	
+
+	<update id="editInfo" parameterType="ovo">
+		UPDATE OFFICEWORKER
+		SET NAME = #{name}, ADDRS = #{addrs}, PHONE = #{phone}, MAIL = #{mail}
+		<if test="password != null">
+			, PASSWORD = #{password}
+		</if>
+		<if test="photoname != null">
+			, PHOTONAME = #{photoname}
+		</if>
+		WHERE ENO = #{eno}
+	</update>
 
 </mapper>
