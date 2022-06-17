@@ -20,8 +20,6 @@ public class InsertEmpActionCommand implements Action {
 		String saveDir = req.getRealPath("/images/myinfo");
 		int maxFile = 1024 * 1024 * 10; // 10Mbyte
 		
-		System.out.println(saveDir);
-		
 		MultipartRequest mr;
 		
 		try {
