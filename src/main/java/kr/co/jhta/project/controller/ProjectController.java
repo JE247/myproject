@@ -11,17 +11,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import kr.co.jhta.project.action.Action;
-import kr.co.jhta.project.action.AllEmpCommand;
-import kr.co.jhta.project.action.EditInfoOkActionCommand;
-import kr.co.jhta.project.action.EditInfoOkActionCommand;
-import kr.co.jhta.project.action.LoginActionCommend;
-import kr.co.jhta.project.action.LoginFormActionCommand;
-import kr.co.jhta.project.action.LogoutActionCommand;
-import kr.co.jhta.project.action.MainActionCommand;
-import kr.co.jhta.project.action.MyInfoActionCommand;
 import kr.co.jhta.project.dao.OfficeWorkerDAO;
 import kr.co.jhta.project.dto.OfficeWorkerDTO;
+import kr.co.jhta.project.main.action.AllEmpActionCommand;
+import kr.co.jhta.project.main.action.DeleteOkActionCommand;
+import kr.co.jhta.project.main.action.EditEmpActionCommand;
+import kr.co.jhta.project.main.action.MyInfoOkActionCommand;
+import kr.co.jhta.project.main.action.EditOkActionCommand;
+import kr.co.jhta.project.main.action.InsertEmpActionCommand;
+import kr.co.jhta.project.main.action.InsertFormActionCommand;
+import kr.co.jhta.project.main.action.LoginActionCommend;
+import kr.co.jhta.project.main.action.LoginFormActionCommand;
+import kr.co.jhta.project.main.action.LogoutActionCommand;
+import kr.co.jhta.project.main.action.MainActionCommand;
+import kr.co.jhta.project.main.action.MyInfoActionCommand;
 
 @WebServlet("/MyProject.do")
 public class ProjectController extends HttpServlet {
@@ -48,9 +51,19 @@ public class ProjectController extends HttpServlet {
 			} else if (cmd.equals("myinfo")) {
 				ac = new MyInfoActionCommand();
 			}  else if (cmd.equals("infoeditOk")) {
-				ac = new EditInfoOkActionCommand();
+				ac = new MyInfoOkActionCommand();
 			} else if (cmd.equals("allemp")) {
-				ac = new AllEmpCommand();
+				ac = new AllEmpActionCommand();
+			} else if (cmd.equals("editemp")) {
+				ac = new EditEmpActionCommand();
+			} else if (cmd.equals("insertemp")) {
+				ac = new InsertFormActionCommand();
+			} else if (cmd.equals("insertOk")) {
+				ac = new InsertEmpActionCommand();
+			} else if (cmd.equals("editOk")) {
+				ac = new EditOkActionCommand();
+			} else if (cmd.equals("deleteemp")) {
+				ac = new DeleteOkActionCommand();
 			}
 			
 			url = ac.execute(request, response);

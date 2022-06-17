@@ -5,7 +5,7 @@
 <mapper namespace="kr.co.jhta.mapper">
 
 	<select id="getAll" resultType="ovo">
-		SELECT * FROM OFFICEWORKER
+		SELECT * FROM OFFICEWORKER ORDER BY ENO
 	</select>
 
 	<select id="loginOk" parameterType="ovo" resultType="ovo">
@@ -36,6 +36,7 @@
 		
 		</trim>
 		
+		ORDER BY ENO
 	</select>
 	
 
@@ -50,5 +51,35 @@
 		</if>
 		WHERE ENO = #{eno}
 	</update>
-
+	
+	<update id="editempinfo" parameterType="ovo">
+		UPDATE OFFICEWORKER
+		SET NAME = #{name}, ADDRS = #{addrs}, PHONE = #{phone}, MAIL = #{mail}
+		, DNO = #{dno}, JOB = #{job}, POSITION = #{position}
+		<if test="photoname != null">
+			, PHOTONAME = #{photoname}
+		</if>
+		WHERE ENO = #{eno}
+	</update>
+	
+	<insert id="insertEmp" parameterType="ovo">
+		INSERT INTO OFFICEWORKER(ENO, NAME, PASSWORD, PHONE, MAIL, BIRTH, ADDRS, AUTH, 
+													LEAVE, HIREDATE, DNO, JOB, POSITION
+		
+		<if test="photoname != null">
+		, PHOTONAME
+		</if>
+		)
+		VALUES (OFFICEWORKER_ENO_SEQ.NEXTVAL, #{name}, #{password}, #{phone}, #{mail}, #{birth}, #{addrs}, 
+										0, 0,#{hiredate}, #{dno}, #{job}, #{position}
+		<if test="photoname != null">
+		, #{photoname}
+		</if>								
+										
+		)
+	</insert>
+	
+	<delete id="deleteEmp" parameterType="int">
+		DELETE OFFICEWORKER WHERE ENO = #{eno}
+	</delete>
 </mapper>

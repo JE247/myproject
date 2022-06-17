@@ -1,16 +1,17 @@
-package kr.co.jhta.project.action;
+package kr.co.jhta.project.main.action;
 
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.co.jhta.project.controller.Action;
 import kr.co.jhta.project.dao.DepartmentDAO;
 import kr.co.jhta.project.dao.OfficeWorkerDAO;
 import kr.co.jhta.project.dto.DepartmentDTO;
 import kr.co.jhta.project.dto.OfficeWorkerDTO;
 
-public class AllEmpCommand implements Action {
+public class AllEmpActionCommand implements Action {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) {

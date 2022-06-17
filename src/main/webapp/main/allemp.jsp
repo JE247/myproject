@@ -26,15 +26,28 @@
             $("form").submit();
         });
         $("#addOne").on('click', function(){
-            $("form").attr("action", "");
+        	$("#cmd").val("insertemp");
+            $("form").attr("action", "MyProject.do");
             $("form").submit();
         });
         $("#modifyOne").on('click', function(){
-            $("form").attr("action", "");
+        	var target = $("input:radio[name='selectone']").is(":checked");
+			if(!target){
+				alert("사원을 선택해주세요!");
+				return
+            }
+        	$("#cmd").val("editemp");
+            $("form").attr("action", "MyProject.do");
             $("form").submit();
         });
         $("#deleteOne").on('click', function(){
-            $("form").attr("action", "");
+        	var target = $("input:radio[name='selectone']").is(":checked");
+			if(!target){
+				alert("사원을 선택해주세요!");
+				return
+            }
+        	$("#cmd").val("deleteemp");
+            $("form").attr("action", "MyProject.do");
             $("form").submit();
         });
     });
@@ -75,9 +88,10 @@
 	<jsp:include page="../tag/header.jsp"></jsp:include>
 	<div class="contents" >
         <form action="">
-        	<input type="hidden" name="cmd" value="allemp" />
+        	<input type="hidden" id="cmd" name="cmd" value="allemp" />
             <h2>사원 정보 조회</h2>
             <br><br>
+            <div class="tablewrap" style="width:100%; height:650px; overflow:auto">
             <table class="table">
                 <tr>
                     <td colspan="7" style="text-align: right;">
@@ -144,6 +158,7 @@
                 <%} %>
 
             </table>
+            </div>
         </form>
     </div>
 </div>

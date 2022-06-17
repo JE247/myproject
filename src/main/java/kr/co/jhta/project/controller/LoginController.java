@@ -12,12 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
-import kr.co.jhta.project.action.Action;
-import kr.co.jhta.project.action.LoginActionCommend;
-import kr.co.jhta.project.action.LoginFormActionCommand;
-import kr.co.jhta.project.action.MainActionCommand;
 import kr.co.jhta.project.dao.OfficeWorkerDAO;
 import kr.co.jhta.project.dto.OfficeWorkerDTO;
+import kr.co.jhta.project.main.action.LoginActionCommend;
+import kr.co.jhta.project.main.action.LoginFormActionCommand;
+import kr.co.jhta.project.main.action.MainActionCommand;
 
 @WebServlet("/MyProjectLogin.do")
 public class LoginController extends HttpServlet{

@@ -10,6 +10,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 <script>
     function readURL(input) {
         if (input.files && input.files[0]) {
@@ -23,12 +24,7 @@
             document.getElementById('preview').src = "";
         }
     }
-
-    function active() {
-        $("#repw").removeAttr("disabled");
-    }
     
-	
     function openKaKaoPostcode() {
 		new daum.Postcode({
 			oncomplete : function(data) { // 팝업에서 검색결과를 클릭했을 때 실행내용
@@ -36,17 +32,49 @@
 			}
 		}).open();
     }
+    
     $(function(){
-        $("#insub").on("click", function(){
-            if($("#orinpw").val() != '${logindto.password}'){ 
-                alert("비밀번호가 올바르지 않습니다.")
-                return
-            }
-            $("form").submit();
-        });
-        
-        
-        $("#addrs").on("click", openKaKaoPostcode);
+    	$("#addrs").on("click", openKaKaoPostcode);
+    	
+    	$("#insub").on("click", function(){
+    		if($("input:text[name='name']").val() == ''){
+    			alert("이름을 입력해주세요");
+    			$("input:text[name='name']").focus();
+    			return
+    		} else if ($("input:password[name='pw']").val() == ''){
+    			alert("비밀번호를 입력해주세요");
+    			$("input:password[name='pw']").focus();
+    			return
+    		} else if ($("input[name='birth']").val() == ''){
+    			alert("생일를 입력해주세요");
+    			$("input[name='birth']").focus();
+    			return
+    		} else if ($("input[name='hire']").val() == ''){
+    			alert("입사일을 입력해주세요");
+    			$("input[name='hire']").focus();
+    			return
+    		} else if ($("input[name='addrs1']").val() == ''){
+    			alert("주소를 입력해주세요");
+    			$("input[name='addrs']").focus();
+    			return
+    		} else if ($("input[name='phone']").val() == ''){
+    			alert("핸드폰번호를 입력해주세요");
+    			$("input[name='phone']").focus();
+    			return
+    		} else if ($("input[name='email']").val() == ''){
+    			alert("메일주소를 입력해주세요");
+    			$("input[name='email']").focus();
+    			return
+    		} else if ($("select[name='dno']").val() == ''){
+    			alert("부서를 등록해주세요");
+    			return
+    		} else if ($("select[name='position']").val() == ''){
+    			alert("직급을 등록해주세요");
+    			return
+    		}
+    		
+    		$("form").submit();
+    	});
     });
 </script>
 
@@ -57,7 +85,7 @@
         margin: 0px;
         padding: 0px;
     }
-    
+
     .container {
         margin: 10px auto;
     }
@@ -81,7 +109,6 @@
         margin: 100px auto;
         display: flex;
         width:1000px;
-        
     }
 
     .edit {
@@ -95,7 +122,7 @@
         font-size: 14px;
     }
 
-    table{
+    table {
 
         font-family: 'Noto Sans KR', sans-serif;
         font-style: normal;
@@ -110,26 +137,27 @@
     }
 
     .inputtag {
-        margin: 10px auto;
-        width: 350px;
-        height: 40px;
-        padding: 5px;
-        border: 1px solid rgba(0, 0, 0, 0.25);
-        filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
-        border-radius: 12px;
-        font-weight: 500;
-    }
-
-    .phonetag {
-        margin: 10px auto;
-        width: 200px;
-        height: 35px;
-        padding: 5px;
-        border: 1px solid rgba(0, 0, 0, 0.25);
-        filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
-        border-radius: 12px;
-        font-weight: 500;
-    }
+	    margin: 10px auto;
+	    width: 350px;
+	    height: 40px;
+	    padding: 5px;
+	    border: 1px solid rgba(0, 0, 0, 0.25);
+	    filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
+	    border-radius: 12px;
+	    font-weight: 500;
+	}
+	
+	.info > table input, .info > table select  {
+	    margin: 10px auto;
+	    width: 160px;
+	    height: 35px;
+	    padding: 5px;
+	    border: 1px solid rgba(0, 0, 0, 0.25);
+	    filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
+	    border-radius: 12px;
+	    font-weight: 500;
+	    font-size: 15px;
+	}
 
     .rev {
         border: 0;
@@ -154,20 +182,19 @@
         width: 100px;
         height: 45px;
         position: relative;
-        top: 30px;
         left: 550px;
     }
 </style>
 <title>MyProject</title>
 </head>
 <body>
-    <div class="container">
-        <jsp:include page="../tag/header.jsp"></jsp:include>
-        <form action="MyProject.do?cmd=infoeditOk" method="post" enctype="multipart/form-data">
+<div class="container">
+	<jsp:include page="../tag/header.jsp"></jsp:include>
+        <form id="frm" action="MyProject.do?cmd=insertOk" method="post" enctype="multipart/form-data">
             <div class="contents">
                 <div class="mypicture" style="width:300px; height:230px; position: relative; top: 20px;">
                     <div class="picture">
-	                    <c:if test="${myinfo.photoname eq null }">
+                        <c:if test="${myinfo.photoname eq null }">
 	                		<img class="profile" src="images/myinfo/basic.gif" alt="" />
 	                	</c:if>
 	                	<c:if test="${myinfo.photoname ne null }">
@@ -183,53 +210,64 @@
                     <div class="info" style="text-align: center;">
                         <table>
                             <tr>
-                                <th style="width: 50%;">사번</th>
-                                <td>${myinfo.eno }</td>
-                            </tr>
-                            <tr>
                                 <th>부서</th>
-                                <td>${mydept.dname }</td>
+                                <td>
+                                    <select name="dno" id="">
+                                        <option value="">부서명</option>
+                                        <c:forEach var="vo" items="${deptlist}">
+                                        	<option value="${vo.dno}">${vo.dname }</option>
+                                        </c:forEach>
+                                     </select>
+                                </td>
                             </tr>
                             <tr>
                                 <th>직무</th>
-                                <td>${myinfo.job }</td>
+                                <td><input type="text" name="job" id=""></td>
                             </tr>
                             <tr>
                                 <th>직급</th>
-                                <td>${myinfo.position }</td>
+                                <td>
+                                    <select name="position" id="">
+                                        <option value="">직급명</option>
+                                        <c:forEach var="vo" items="${positionlist}">
+                                        	<option value="${vo}">${vo}</option>
+                                        </c:forEach>
+                                     </select>
+                                </td>
                             </tr>
                         </table>
                     </div>
                 </div>
 
                 <div class="edit">
-                    <input type="hidden" name="eno" value="${myinfo.eno }">
-                    
+                    <input type="hidden" name="eno">
+
                     <label for="">이름</label><br>
-                    <input class="inputtag" type="text" name="name" value="${myinfo.name }"><br>
+                    <input class="inputtag" type="text" name="name"><br>
                     
-                    <label for="">현재 비밀번호</label><br>
-                    <input class="inputtag" type="password" name="orinpw" id="orinpw">
-                    <input type="button" onclick="active();" value="비밀번호 변경" class="rev" id="rev"><br>
+                    <label for="">비밀번호</label><br>
+                    <input class="inputtag" type="password" name="pw" id="orinpw"><br>
                     
-                    <label for="">변경할 비밀번호</label><br>
-                    <input class="inputtag" type="password" name="repw" id="repw" disabled><br>
+                    <label for="">생일</label><br>
+                    <input class="inputtag" type="date" name="birth"><br>
+                    
+                    <label for="">입사일</label><br>
+                    <input class="inputtag" type="date" name="hire"><br>
                     
                     <label for="">주소</label><br>
-                    <input class="inputtag" type="text" id="addrsresult" name="addrs1" value="${myinfo.addrs }" readonly> 
+                    <input class="inputtag" type="text" name="addrs1" id="addrsresult" readonly>
                     <input type="button" value="주소찾기" class="rev" id="addrs"><br>
-                    <input class="inputtag" type="text" name="addrs2"><br>
-                    
-                    <label for="">휴대폰 번호</label><br>
-                    <input class="inputtag" type="text" name="phone" value="${myinfo.phone }"><br>
-                    
-                    <label for="">이메일 주소</label><br>
-                    <input class="inputtag" type="text" name="email" value="${myinfo.mail }"><br>
+                    <input class="inputtag" type="text" name="addrs2" id=""><br>
 
-                    <input id="insub" type="button" value="수정">
+                    <label for="">휴대폰 번호</label><br>
+                    <input class="inputtag" type="text" name="phone" id=""><br>
+
+                    <label for="">이메일 주소</label><br>
+                    <input class="inputtag" type="text" name="email" id=""><br>
+
+                    <input id="insub" type="button" value="등록">
                 </div>
         </form>
     </div>
-</div>
 </body>
 </html>

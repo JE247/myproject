@@ -23,12 +23,7 @@
             document.getElementById('preview').src = "";
         }
     }
-
-    function active() {
-        $("#repw").removeAttr("disabled");
-    }
     
-	
     function openKaKaoPostcode() {
 		new daum.Postcode({
 			oncomplete : function(data) { // 팝업에서 검색결과를 클릭했을 때 실행내용
@@ -36,18 +31,17 @@
 			}
 		}).open();
     }
+    
     $(function(){
         $("#insub").on("click", function(){
-            if($("#orinpw").val() != '${logindto.password}'){ 
-                alert("비밀번호가 올바르지 않습니다.")
-                return
-            }
+
             $("form").submit();
         });
         
         
         $("#addrs").on("click", openKaKaoPostcode);
     });
+
 </script>
 
 <style>
@@ -57,7 +51,7 @@
         margin: 0px;
         padding: 0px;
     }
-    
+
     .container {
         margin: 10px auto;
     }
@@ -69,6 +63,7 @@
         border: 1px solid grey;
         overflow: hidden;
         margin: auto;
+        text-align:center;
     }
 
     .picture>img {
@@ -86,6 +81,7 @@
 
     .edit {
         margin-left: 150px;
+        margin-top: 70px;
     }
 
     .edit>label {
@@ -95,14 +91,13 @@
         font-size: 14px;
     }
 
-    table{
+    table {
 
         font-family: 'Noto Sans KR', sans-serif;
         font-style: normal;
         font-weight: 700;
         font-size: 20px;
         margin-top: 10px;
-        width: 100%;
     }
 
     table tr {
@@ -120,15 +115,16 @@
         font-weight: 500;
     }
 
-    .phonetag {
+    .info > table input, .info > table select  {
         margin: 10px auto;
-        width: 200px;
+        width: 160px;
         height: 35px;
         padding: 5px;
         border: 1px solid rgba(0, 0, 0, 0.25);
         filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
         border-radius: 12px;
         font-weight: 500;
+        font-size: 15px;
     }
 
     .rev {
@@ -161,17 +157,17 @@
 <title>MyProject</title>
 </head>
 <body>
-    <div class="container">
-        <jsp:include page="../tag/header.jsp"></jsp:include>
-        <form action="MyProject.do?cmd=infoeditOk" method="post" enctype="multipart/form-data">
+<div class="container">
+	<jsp:include page="../tag/header.jsp"></jsp:include>
+        <form id="frm" action="MyProject.do?cmd=editOk" method="post" enctype="multipart/form-data">
             <div class="contents">
                 <div class="mypicture" style="width:300px; height:230px; position: relative; top: 20px;">
                     <div class="picture">
-	                    <c:if test="${myinfo.photoname eq null }">
+                        <c:if test="${infodto.photoname eq null }">
 	                		<img class="profile" src="images/myinfo/basic.gif" alt="" />
 	                	</c:if>
-	                	<c:if test="${myinfo.photoname ne null }">
-	                		<img class="profile" src="images/myinfo/${myinfo.photoname}" alt="" />
+	                	<c:if test="${infodto.photoname ne null }">
+	                		<img class="profile" src="images/myinfo/${infodto.photoname}" alt="" />
 	                	</c:if>
                     </div>
                     <input type="file" name="photo" id="choose" style="display:none;" onchange="readURL(this);">
@@ -184,52 +180,71 @@
                         <table>
                             <tr>
                                 <th style="width: 50%;">사번</th>
-                                <td>${myinfo.eno }</td>
+                                <td>${infodto.eno }</td>
                             </tr>
                             <tr>
                                 <th>부서</th>
-                                <td>${mydept.dname }</td>
+                                <td>
+                                    <select name="dno" id="">
+                                        <option value="">부서명</option>
+                                        <c:forEach var="vo" items="${deptlist}">
+	                          	    		<c:choose>
+		                          	    	<c:when test="${infodto.dno eq vo.dno }">
+			                            	<option value="${vo.dno}" selected>${vo.dname}</option>
+		                          	    	</c:when>
+		                          	    	<c:otherwise>
+			                            	<option value="${vo.dno}">${vo.dname}</option>
+			                            	</c:otherwise>
+	                          	    		</c:choose>
+	                            </c:forEach>
+                                     </select>
+                                </td>
                             </tr>
                             <tr>
                                 <th>직무</th>
-                                <td>${myinfo.job }</td>
+                                <td><input type="text" name="job" value="${infodto.job }"></td>
                             </tr>
                             <tr>
                                 <th>직급</th>
-                                <td>${myinfo.position }</td>
+                                <td>
+                                    <select name="position" id="">
+                                        <option value="">직급명</option>
+                                       		<c:forEach var="vo" items="${rankposition}">
+			                          	    	<c:choose>
+				                          	    	<c:when test="${infodto.position eq vo }">
+					                            	<option value="${vo}" selected>${vo}</option>
+				                          	    	</c:when>
+				                          	    	<c:otherwise>
+					                            	<option value="${vo}">${vo}</option>
+					                            	</c:otherwise>
+			                          	    	</c:choose>
+				                            </c:forEach>
+                                     </select>
+                                </td>
                             </tr>
                         </table>
                     </div>
                 </div>
 
                 <div class="edit">
-                    <input type="hidden" name="eno" value="${myinfo.eno }">
-                    
+                    <input type="hidden" name="eno" value="${infodto.eno }">
                     <label for="">이름</label><br>
-                    <input class="inputtag" type="text" name="name" value="${myinfo.name }"><br>
-                    
-                    <label for="">현재 비밀번호</label><br>
-                    <input class="inputtag" type="password" name="orinpw" id="orinpw">
-                    <input type="button" onclick="active();" value="비밀번호 변경" class="rev" id="rev"><br>
-                    
-                    <label for="">변경할 비밀번호</label><br>
-                    <input class="inputtag" type="password" name="repw" id="repw" disabled><br>
-                    
+                    <input class="inputtag" type="text" name="name" value="${infodto.name }"><br>
+
                     <label for="">주소</label><br>
-                    <input class="inputtag" type="text" id="addrsresult" name="addrs1" value="${myinfo.addrs }" readonly> 
+                    <input class="inputtag" type="text" id="addrsresult" name="addrs1" value="${infodto.addrs }" readonly>
                     <input type="button" value="주소찾기" class="rev" id="addrs"><br>
                     <input class="inputtag" type="text" name="addrs2"><br>
-                    
+
                     <label for="">휴대폰 번호</label><br>
-                    <input class="inputtag" type="text" name="phone" value="${myinfo.phone }"><br>
-                    
+                    <input class="inputtag" type="text" name="phone" value="${infodto.phone }"><br>
+
                     <label for="">이메일 주소</label><br>
-                    <input class="inputtag" type="text" name="email" value="${myinfo.mail }"><br>
+                    <input class="inputtag" type="text" name="email" value="${infodto.mail }"><br>
 
                     <input id="insub" type="button" value="수정">
                 </div>
         </form>
     </div>
-</div>
 </body>
 </html>

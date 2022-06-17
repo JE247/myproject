@@ -11,6 +11,7 @@ import kr.co.jhta.project.dto.OfficeWorkerDTO;
 public class OfficeWorkerDAO {
 	private SqlSessionFactory factory;
 
+	
 	public OfficeWorkerDAO() {
 		factory = ConnectionManager.getInstance().getFactory();
 	}
@@ -27,7 +28,6 @@ public class OfficeWorkerDAO {
 		ss.close();
 		return list;
 	}
-	
 	
 	
 	public List<String> getPosition(){
@@ -56,6 +56,23 @@ public class OfficeWorkerDAO {
 	public void editInfo(OfficeWorkerDTO dto) {
 		SqlSession ss = factory.openSession(true);
 		ss.update("kr.co.jhta.mapper.editInfo", dto);
+		ss.close();
+	}
+	public void editEmpInfo(OfficeWorkerDTO dto) {
+		SqlSession ss = factory.openSession(true);
+		ss.update("kr.co.jhta.mapper.editempinfo", dto);
+		ss.close();
+	}
+	
+	public void insertEmp(OfficeWorkerDTO dto) {
+		SqlSession ss = factory.openSession(true);
+		ss.insert("kr.co.jhta.mapper.insertEmp", dto);
+		ss.close();
+	} 
+	
+	public void deleteEmp(int eno) {
+		SqlSession ss = factory.openSession(true);
+		ss.delete("kr.co.jhta.mapper.deleteEmp", eno);
 		ss.close();
 	}
 }

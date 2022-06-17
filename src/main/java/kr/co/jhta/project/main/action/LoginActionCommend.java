@@ -1,8 +1,10 @@
-package kr.co.jhta.project.action;
+package kr.co.jhta.project.main.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import kr.co.jhta.project.controller.Action;
 
 public class LoginActionCommend implements Action {
 

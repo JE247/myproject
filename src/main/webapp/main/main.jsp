@@ -23,15 +23,21 @@
 <title>MyProject</title>
 <style>
 @charset "UTF-8";
-
+*{
+	margin: 0px;
+	padding: 0px;
+}
+.container {
+    margin: 10px auto;
+}
 .contents {
-	margin: 30px auto;
+	margin: 80px auto;
 	display: flex;
 }
 
 .myinfo {
 	width: 350px;
-	padding-right: 10px;
+	padding-right: 50px;
 	border-right: 1px solid gainsboro;
 }
 
@@ -47,7 +53,7 @@
     margin: auto;
 }
 .buttons input{
-    margin-top: 10px;
+    margin-top: 30px;
     margin-left: 10px;
     margin-bottom : 20px;
     width: 120px;
@@ -64,7 +70,7 @@
 
 #calendar {
 	width: 300px;
-	margin: 10px auto;
+	margin: 40px auto;
 	height: 340px;
 	font-size: 10px;
 }
