@@ -36,5 +36,9 @@
 			WHERE CONTENTS LIKE '%'||#{keyword}||'%'
 		</if>
 	</select>
+	
+	<select id="getOne" parameterType="int" resultType="bvo">
+		SELECT * FROM OFFICE_BOARD WHERE BNO = #{bno}
+	</select>
 
 </mapper>

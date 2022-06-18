@@ -41,7 +41,7 @@
 				</a> 
 				<a class="nav-link" href="MyProject.do?cmd=myinfo">내 정보</a> 
 				<a class="nav-link" href="MyProject.do?cmd=allemp">사원 정보</a> 
-				<a class="nav-link" href="MyProjectBoard.do">게시판</a>
+				<a class="nav-link" href="MyProjectBoard.do?cmd=board">게시판</a>
 				<a class="nav-link" href="#">회의실 예약</a> 
 				<a class="nav-link" href="#">채팅</a>
 				<a class="nav-link" href="#">일정(Calendar)</a> 

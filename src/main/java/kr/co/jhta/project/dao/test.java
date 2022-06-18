@@ -4,6 +4,7 @@ import java.util.List;
 
 import kr.co.jhta.project.dto.BoardDTO;
 import kr.co.jhta.project.dto.DepartmentDTO;
+import kr.co.jhta.project.dto.FileDTO;
 import kr.co.jhta.project.dto.OfficeWorkerDTO;
 import kr.co.jhta.project.dto.PagingSearch;
 
@@ -14,16 +15,12 @@ public class test {
 //		
 //		
 //		DepartmentDAO dao = new DepartmentDAO();
+	
+		FileDAO dao = new FileDAO();
+		List<FileDTO> list = dao.getOne(12);
 		
-		BoardDAO dao = new BoardDAO();
-		PagingSearch ps = new PagingSearch(1, 11, "writer", "홍");
-		
-		
-		List<BoardDTO> list = dao.getAll(ps);
-		
-		
-		for(BoardDTO dto1 : list) {
-			System.out.println(dto1.getBno());
+		for(FileDTO dto : list) {
+			System.out.println(dto.getFilename());
 		}
 	}
 

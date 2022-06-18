@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.jhta.project.board.action.BoardActionCommad;
+import kr.co.jhta.project.board.action.DetailActionCommand;
+import kr.co.jhta.project.board.action.DownloadActionCommad;
 import kr.co.jhta.project.main.action.AllEmpActionCommand;
 import kr.co.jhta.project.main.action.DeleteOkActionCommand;
 import kr.co.jhta.project.main.action.EditEmpActionCommand;
@@ -40,6 +42,12 @@ public class BoardController extends HttpServlet {
 			
 			if(cmd==null || cmd.equals("board")) {
 				ac = new BoardActionCommad();
+			} if(cmd.equals("detail")) {
+				ac = new DetailActionCommand();
+			} if(cmd.equals("download")) {
+				ac = new DownloadActionCommad();
+				url = ac.execute(req, resp);
+				return;
 			}
 			
 			

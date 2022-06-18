@@ -29,5 +29,12 @@ public class BoardDAO {
 		ss.close();
 		return total;
 	}
+	
+	public BoardDTO getOne(int bno) {
+		SqlSession ss = factory.openSession(true);
+		BoardDTO dto = ss.selectOne("kr.co.jhta.mapper.board.getOne", bno);
+		ss.close();
+		return dto;
+	}
 
 }

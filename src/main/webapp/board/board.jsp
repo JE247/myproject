@@ -12,7 +12,7 @@
 <title>MyProject</title>
 <script>
 	function paging(page){
-		$("input:hidden").val(page);
+		$("input:hidden[name='cp']").val(page);
 		$("form").submit();
 	}
 </script>
@@ -61,10 +61,8 @@
         height: 35px;
     }
     
-    #things{
-    	position:absolute;
-    	bottom: 230px;
-    	left: 600px;
+    table a{
+    	text-decoration: none;
     }
 </style>
 </head>
@@ -85,28 +83,38 @@
 				<c:forEach var="vo" items="${boardlist }">
 	                <tr>
 	                    <td>${vo.bno }</td>
-	                    <td style="text-align: left">${vo.title }</td>
+	                    <td style="text-align: left;"><a href="MyProjectBoard.do?cmd=detail&bno=${vo.bno }">${vo.title }</a></td>
 	                    <td>${vo.writer }</td>
 	                    <td>${vo.regdate }</td>
 	                    <td>${vo.hits }</td>
 	                </tr>
                 </c:forEach>
+                <tr>
+                	<td colspan="5" style="text-align: right;">
+                		<a href="MyProjectBoard.do?cmd=write"><input type="button" value="글쓰기" class="btn btn-outline-success"/></a>
+                	</td>
+                </tr>
             </table>
 			<div id="things">
 	            <div class="paging">
 		               <nav aria-label="Page navigation example" style="display: inline-block;">
 						  <ul class="pagination">
-						    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-				               <c:forEach begin="1" end="${totalPage }" var="i" step="1">
+						  	<c:if test="${isPre}">
+						    	<li class="page-item"><a class="page-link" href="#" onclick="paging(${cp-1});">Previous</a></li>
+						    </c:if>
+				               <c:forEach begin="${startPage}" end="${endPage}" var="i" step="1">
 								    <li class="page-item"><a class="page-link" onclick="paging(${i});" href="#">${i}</a></li>
 				               </c:forEach>
-						    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+				            <c:if test="${isNext }">
+						    	<li class="page-item"><a class="page-link" href="#">Next</a></li>
+						    </c:if>
 						  </ul>
 						</nav>
 	            </div>
 	            <div class="search">
-		            <form action="MyProjectBoard.do?cmd=board">
+		            <form action="MyProjectBoard.do">
 		            	<input type="hidden" name="cp" value="" />
+		            	<input type="hidden" name="cmd" value="board" />
 		                <select name="type" id="selection">
 		                    <option value="title">제목</option>
 		                    <option value="writer">작성자</option>

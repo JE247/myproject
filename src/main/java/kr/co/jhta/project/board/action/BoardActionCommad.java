@@ -34,7 +34,7 @@ public class BoardActionCommad implements Action {
 
 			// 1. 총 게시물 수 구하기
 			int total = dao.getTotalCount(ps);
-			
+
 			// 2. 현재 페이지 구하기
 			int cp = 1;
 
@@ -54,14 +54,48 @@ public class BoardActionCommad implements Action {
 
 			// 6. 현재 페이지 끝 번호
 			int endNum = cp * countPerPage;
+
+			// 7. 시작 페이지 번호
+			int startPage = 1;
+
+			// 8. 끝 페이지 번호
+			int endPage = totalPage;
 			
+			// 현재 페이지를 기준으로 밑으로 5개 위로 5개 보이도록 조정
+			if (cp < 6 && totalPage>10) {
+				startPage = 1;
+				endPage = 10;
+			} else if (cp >= 6 && cp + 5 < totalPage) {
+				startPage = cp - 5;
+				endPage = cp + 5;
+			} else if (cp >= 6 && cp +5 >= totalPage) {
+				startPage = cp - 5;
+				endPage = totalPage;
+			}
+			
+			boolean isPre = false;
+			boolean isNext = false;
+			
+			if(cp > 6) {
+				isPre = true;
+			}
+			if(cp+6 < totalPage) {
+				isNext = true;
+			}
+
+
+
 			req.setAttribute("total", total);
 			req.setAttribute("currentPage", cp);
 			req.setAttribute("countPerPage", countPerPage);
 			req.setAttribute("totalPage", totalPage);
 			req.setAttribute("startNum", startNum);
 			req.setAttribute("endNum", endNum);
-			
+			req.setAttribute("startPage", startPage);
+			req.setAttribute("endPage", endPage);
+			req.setAttribute("isPre", isPre);
+			req.setAttribute("isNext", isNext);
+
 			ps.setStartNum(startNum);
 			ps.setEndNum(endNum);
 

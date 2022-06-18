@@ -10,6 +10,7 @@
 		<typeAlias type="kr.co.jhta.project.dto.DepartmentDTO" alias="dvo"/>
 		<typeAlias type="kr.co.jhta.project.dto.BoardDTO" alias="bvo"/>
 		<typeAlias type="kr.co.jhta.project.dto.PagingSearch" alias="ps"/>
+		<typeAlias type="kr.co.jhta.project.dto.FileDTO" alias="fvo"/>
 	</typeAliases>
 	<environments default="dev">
 		<environment id="dev">
@@ -26,5 +27,6 @@
 		<mapper resource="mapper/officeworker.xml" />
 		<mapper resource="mapper/department.xml" />
 		<mapper resource="mapper/officeboard.xml" />
+		<mapper resource="mapper/boardfile.xml" />
 	</mappers>
 </configuration>
