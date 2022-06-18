@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.jhta.mapper.board">
+
+	<select id="getAll" resultType="bvo" parameterType="ps">
+		SELECT BNO, WRITER, TITLE, CONTENTS, HITS, TO_CHAR(REGDATE,'YYYY.MM.DD') REGDATE
+		FROM ( SELECT ROWNUM RN, BNO, WRITER, TITLE, CONTENTS, HITS, REGDATE 
+					FROM (SELECT BNO, WRITER, TITLE, CONTENTS, HITS, REGDATE
+							FROM OFFICE_BOARD 
+							<if test="type != null and type.equals('title')">
+							WHERE TITLE LIKE '%'||#{keyword}||'%'
+							</if>
+							<if test="type != null and type.equals('writer')">
+								WHERE WRITER LIKE '%'||#{keyword}||'%'
+							</if>
+							<if test="type != null and type.equals('contents')">
+								WHERE CONTENTS LIKE '%'||#{keyword}||'%'
+							</if>
+							ORDER BY REGDATE DESC)
+					WHERE ROWNUM &lt;= #{endNum})
+		
+		WHERE RN &gt;=#{startNum}
+	</select>
+
+	<select id="getTotalCount" resultType="int" parameterType="ps">
+		SELECT COUNT(BNO) FROM OFFICE_BOARD
+		<if test="type != null and type.equals('title')">
+			WHERE TITLE LIKE '%'||#{keyword}||'%'
+		</if>
+		<if test="type != null and type.equals('writer')">
+			WHERE WRITER LIKE '%'||#{keyword}||'%'
+		</if>
+		<if test="type != null and type.equals('contents')">
+			WHERE CONTENTS LIKE '%'||#{keyword}||'%'
+		</if>
+	</select>
+
+</mapper>
