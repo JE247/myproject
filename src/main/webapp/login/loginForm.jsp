@@ -82,23 +82,26 @@
     .loginBox {
         width: 500px;
         margin: 100px auto;
+        text-align: center;
+    }
+    form{
+    	margin-top: 50px;
     }
     #id, #pw {
+        margin: 10px auto;
         width: 300px;
         height: 40px;
+        padding: 5px;
+        border: 1px solid rgba(0, 0, 0, 0.25);
+        filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
         border-radius: 12px;
-        padding: 0px 10px;
-        margin-top: 30px;
+        font-weight: 500;
     }
     form>input[type="button"]{
     	width: 300px;
         height: 40px;
-        border-radius: 12px;
-        padding: 0px 10px;
         margin-top: 30px;
-        background-color: darkgreen;
-        border: none;
-        color: white;
+        border-radius: 12px;
     }
 </style>
 </head>
@@ -116,7 +119,7 @@
                 <input type="text" name="id" id="id" placeholder="사번을 입력하세요"> <br>
                 <input type="password" name="pw" id="pw" placeholder="비밀번호를 입력하세요"> <br>
                 <input type="checkbox" name="check" id="checkId" style="margin-top:30px;"/> 사원정보를 기억합니다.<br>
-                <input type="button" value="로그인">
+                <input class="btn btn-outline-success" type="button" value="로그인">
             </form>
         </div>
     </div>

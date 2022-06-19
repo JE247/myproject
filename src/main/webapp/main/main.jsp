@@ -45,7 +45,23 @@
 	display:flex;
 }
 
-.my>p{
+.picture {
+    border-radius: 100%;
+    width: 150px;
+    height: 150px;
+    border: 1px solid grey;
+    overflow: hidden;
+    margin: auto;
+    text-align:center;
+}
+
+.picture>img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.my p{
     font-size: 20px;
     font-weight: bold;
     text-align: center;
@@ -57,9 +73,6 @@
     margin-bottom : 20px;
     width: 120px;
     height: 40px;
-    border: none;
-    border-radius: 10px;
-    background-color: #64C7F2;
 }
 
 .profile{
@@ -143,6 +156,7 @@
 
 li > a, td > a {
 	text-decoration: none;
+	color: black;
 }
 </style>
 </head>
@@ -152,24 +166,26 @@ li > a, td > a {
         <div class="contents">
             <div class="myinfo">
                 <div class="my">
-                	<c:if test="${maindto.photoname eq null }">
-                		<img class="profile" src="images/myinfo/basic.gif" alt="" />
-                	</c:if>
-                	<c:if test="${maindto.photoname ne null }">
-                		<img class="profile" src="images/myinfo/${maindto.photoname}" alt="" />
-                	</c:if>
+                	<div class="picture">
+	                	<c:if test="${maindto.photoname eq null }">
+	                		<img class="profile" src="images/myinfo/basic.gif" alt="" />
+	                	</c:if>
+	                	<c:if test="${maindto.photoname ne null }">
+	                		<img class="profile" src="images/myinfo/${maindto.photoname}" alt="" />
+	                	</c:if>
+                	</div>
                 	<p>${maindto.name}님 <br> 환영합니다.</p>
                 </div>
                 <div class="buttons" style="text-align: center;">
-                    <a href="MyProject.do?cmd=myinfo"><input type="button" value="내 정보확인"></a>
-                    <a href="MyProject.do?cmd=logout"><input type="button" value="로그아웃"></a>
+                    <a href="MyProject.do?cmd=myinfo"><input class="btn btn-outline-success" type="button" value="내 정보확인"></a>
+                    <a href="MyProject.do?cmd=logout"><input class="btn btn-outline-success" type="button" value="로그아웃"></a>
                 </div>
                 <div id="calendar"></div>
                 <div class="scraplist">
                 	<h6>스크랩 리스트</h6> <br>
 						<ul class="list-group">
 							<c:forEach var="vo" items="${scrap }">
-							  <li class="list-group-item"><a href="MyProjectBoard.do?cmd=detail&bno=${vo.bno }">${vo.title}</a></li>
+							  <li class="list-group-item"><a href="MyProjectBoard.do?cmd=detail&bno=${vo.bno }">${vo.bno}) ${vo.title}</a></li>
 							</c:forEach>
 						</ul>
                 </div>
@@ -179,7 +195,7 @@ li > a, td > a {
                 </div>
                 <div class="board">
                 <br><br>
-                    <h4>최신 글</h4>
+                    <h4>최신 글 리스트</h4>
                     <table class="table">
                         <tr>
                             <th>게시번호</th>

@@ -63,6 +63,7 @@
     
     table a{
     	text-decoration: none;
+    	color: black;
     }
 </style>
 </head>
@@ -70,8 +71,8 @@
 	<div class="container">
 		<jsp:include page="../tag/header.jsp"></jsp:include>
 		<div class="contents">
-		<h3>자유게시판</h3>
-            <br><br>
+		<h2>자유게시판</h2>
+            <br><br><br>
             <table class="table">
                 <tr>
                     <th width="10%">No</th>
