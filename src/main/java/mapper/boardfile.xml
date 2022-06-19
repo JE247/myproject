@@ -7,4 +7,16 @@
 	<select id="getOne" parameterType="int" resultType="fvo">
 		SELECT FNO, BNO, FILENAME FROM BOARDFILE WHERE BNO = #{bno}
 	</select>
+	
+	<select id="getFileName" parameterType="int" resultType="String">
+		SELECT FILENAME FROM BOARDFILE WHERE FNO = #{fno}
+	</select>
+	
+	<insert id="writeOne" parameterType="fvo">
+		INSERT INTO BOARDFILE VALUES (BOARDFILE_FNO_SEQ.NEXTVAL, #{bno}, #{filename})
+	</insert>
+	
+	<delete id="deleteFiles" parameterType="int">
+		DELETE BOARDFILE WHERE FNO = #{fno}
+	</delete>
 </mapper>

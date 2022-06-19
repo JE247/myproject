@@ -6,41 +6,34 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import kr.co.jhta.project.dto.BoardDTO;
+import kr.co.jhta.project.dto.EnoBnoDTO;
 import kr.co.jhta.project.dto.FileDTO;
 import kr.co.jhta.project.dto.PagingSearch;
+import kr.co.jhta.project.dto.ScrapDTO;
 
-public class FileDAO {
+public class ScrapDAO {
 	
 	private SqlSessionFactory factory;
 
-	public FileDAO() {
+	public ScrapDAO() {
 		factory = ConnectionManager.getInstance().getFactory();
 	}
 	
-	public List<FileDTO> getOne(int bno) {
+	public ScrapDTO findScrap(EnoBnoDTO dto) {
 		SqlSession ss = factory.openSession(true);
-		List<FileDTO> list = ss.selectList("kr.co.jhta.mapper.file.getOne", bno);
+		ScrapDTO sdto = ss.selectOne("kr.co.jhta.mapper.scrap.findScrap", dto);
 		ss.close();
-		return list;
+		return sdto;
 	}
 	
-	public void writeOne(FileDTO dto) {
+	public void scrapAdd(EnoBnoDTO dto) {
 		SqlSession ss = factory.openSession(true);
-		ss.insert("kr.co.jhta.mapper.file.writeOne", dto);
+		ss.insert("kr.co.jhta.mapper.scrap.scrapAdd", dto);
 		ss.close();
 	}
-
-	public String getFileName(int fno) {
+	public void scrapRemove(EnoBnoDTO dto) {
 		SqlSession ss = factory.openSession(true);
-		String file = ss.selectOne("kr.co.jhta.mapper.file.getFileName", fno);
-		ss.close();
-		return file;
-	}
-
-	public void deleteFiles(int fno) {
-		SqlSession ss = factory.openSession(true);
-		ss.delete("kr.co.jhta.mapper.file.deleteFiles", fno);
+		ss.delete("kr.co.jhta.mapper.scrap.scrapRemove", dto);
 		ss.close();
 	}
-
 }

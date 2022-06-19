@@ -10,21 +10,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
+
 import kr.co.jhta.project.board.action.BoardActionCommad;
+import kr.co.jhta.project.board.action.DeleteActionCommand;
 import kr.co.jhta.project.board.action.DetailActionCommand;
 import kr.co.jhta.project.board.action.DownloadActionCommad;
-import kr.co.jhta.project.main.action.AllEmpActionCommand;
-import kr.co.jhta.project.main.action.DeleteOkActionCommand;
-import kr.co.jhta.project.main.action.EditEmpActionCommand;
-import kr.co.jhta.project.main.action.EditOkActionCommand;
-import kr.co.jhta.project.main.action.InsertEmpActionCommand;
-import kr.co.jhta.project.main.action.InsertFormActionCommand;
-import kr.co.jhta.project.main.action.LoginActionCommend;
-import kr.co.jhta.project.main.action.LoginFormActionCommand;
-import kr.co.jhta.project.main.action.LogoutActionCommand;
-import kr.co.jhta.project.main.action.MainActionCommand;
-import kr.co.jhta.project.main.action.MyInfoActionCommand;
-import kr.co.jhta.project.main.action.MyInfoOkActionCommand;
+import kr.co.jhta.project.board.action.ModifyFormActionCommad;
+import kr.co.jhta.project.board.action.ModifyOkActionCommad;
+import kr.co.jhta.project.board.action.ScrapActionCommand;
+import kr.co.jhta.project.board.action.WriteFormActionCommand;
+import kr.co.jhta.project.board.action.WriteOkActionCommand;
 
 @WebServlet("/MyProjectBoard.do")
 public class BoardController extends HttpServlet {
@@ -42,13 +38,27 @@ public class BoardController extends HttpServlet {
 			
 			if(cmd==null || cmd.equals("board")) {
 				ac = new BoardActionCommad();
-			} if(cmd.equals("detail")) {
+			} else if(cmd.equals("detail")) {
 				ac = new DetailActionCommand();
-			} if(cmd.equals("download")) {
+			} else if(cmd.equals("download")) {
 				ac = new DownloadActionCommad();
 				url = ac.execute(req, resp);
 				return;
+			} else if(cmd.equals("write")){
+				ac = new WriteFormActionCommand();
+			} else if(cmd.equals("writeOk")) {
+				ac = new WriteOkActionCommand();
+			} else if(cmd.equals("scrap")) {
+				JSONObject obj = new ScrapActionCommand().execute(req, resp);
+				return;
+			} else if(cmd.equals("modify")) {
+				ac = new ModifyFormActionCommad();
+			} else if(cmd.equals("modifyOk")) {
+				ac = new ModifyOkActionCommad();
+			} else if(cmd.equals("delete")) {
+				ac = new DeleteActionCommand();
 			}
+			
 			
 			
 			url = ac.execute(req, resp);

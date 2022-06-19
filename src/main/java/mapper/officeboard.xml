@@ -40,5 +40,35 @@
 	<select id="getOne" parameterType="int" resultType="bvo">
 		SELECT * FROM OFFICE_BOARD WHERE BNO = #{bno}
 	</select>
+	
+	<select id="searchBno" parameterType="String" resultType="int">
+		SELECT MAX(BNO) FROM OFFICE_BOARD WHERE WRITER = #{name}
+	</select>
+	
+	<select id="scrapList" parameterType="int" resultType="bvo">
+		SELECT BNO, WRITER, TITLE, CONTENTS, HITS, REGDATE
+		FROM OFFICE_BOARD
+		WHERE BNO IN ( SELECT BNO FROM SCRAP WHERE ENO = #{eno})
+	</select>
+	
+	<insert id="writeOne" parameterType="bvo">
+		INSERT INTO OFFICE_BOARD(BNO, WRITER, TITLE, CONTENTS, HITS, REGDATE)
+		VALUES(OFFICE_BOARD_BNO_SEQ.NEXTVAL, #{writer}, #{title}, #{contents}, 0, SYSDATE)
+	</insert>
+
+	<update id="hitsAdd" parameterType="int">
+		UPDATE OFFICE_BOARD SET HITS = HITS+1 WHERE BNO = ${bno}
+	</update>
+	
+	<update id="updateOne" parameterType="bvo">
+		UPDATE OFFICE_BOARD 
+		SET WRITER = #{writer}, TITLE = #{title}, CONTENTS = #{contents}, REGDATE = SYSDATE
+		WHERE BNO = #{bno}
+	</update>
+	
+	<delete id="deleteOne" parameterType="int">
+		DELETE OFFICE_BOARD WHERE BNO = #{bno}
+	</delete>
+	
 
 </mapper>
