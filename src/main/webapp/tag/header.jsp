@@ -47,8 +47,8 @@
 				<a class="nav-link" href="MyProject.do?cmd=allemp">사원 정보</a> 
 				<a class="nav-link" href="MyProjectBoard.do?cmd=board">게시판</a>
 				<a class="nav-link" href="MyProjectRez.do?cmd=rez">회의실 예약</a> 
-				<a class="nav-link" href="#">채팅</a>
-				<a class="nav-link" href="#">일정(Calendar)</a> 
+				<a class="nav-link" href="MyProjectChatting.do?cmd=chat">채팅</a>
+				<a class="nav-link" href="MyProjectCallendar.do?cmd=cal">일정(Callendar)</a> 
 				<a class="nav-link" href="#">전자결제</a>
 			</nav>
 		</div>
