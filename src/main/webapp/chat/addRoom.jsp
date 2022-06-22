@@ -23,6 +23,11 @@
 		$("select").on("change", function(){
 			$("form").submit();
 		});
+		
+		$("#add").on("click", function(){
+			$("#cmd").val("addOk");
+			$("form").submit();
+		});
 	});
 </script>
 <style>
@@ -100,7 +105,7 @@
 	<div class="container">
 		<div class="contents">
 			<form action="MyProjectChatting.do">
-				<input type="hidden" name="cmd" value="addChatRoom" />
+				<input type="hidden" id="cmd" name="cmd" value="addChatRoom" />
 				<div class="name">
 					채팅방 이름 : 
 					<input type="text" name="room" class="inputText" />

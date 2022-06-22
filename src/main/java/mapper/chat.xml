@@ -10,8 +10,13 @@
 						(SELECT CHATNO FROM CHAT_PERSON WHERE ENO = #{eno})
 	</select>
 	
+	<select id="findNo" resultType="int" parameterType="int">
+		SELECT MAX(CHATNO) FROM CHAT WHERE ENO = ${eno}
+	</select>
+	
 	<insert id="addChat" parameterType="chatroomvo">
-		INSERT INTO CHAT(CHAT_CNO_SEQ.NEXTVAL, #{chatName})
+		INSERT INTO CHAT VALUES(CHAT_CNO_SEQ.NEXTVAL, #{chatName}, #{eno})
 	</insert>
+	
 	
 </mapper>

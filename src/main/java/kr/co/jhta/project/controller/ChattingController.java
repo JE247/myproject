@@ -14,6 +14,7 @@ import org.json.simple.JSONObject;
 
 import kr.co.jhta.project.board.action.ScrapActionCommand;
 import kr.co.jhta.project.chat.action.AddChatRoomActionCommad;
+import kr.co.jhta.project.chat.action.AddRoomOkActionCommand;
 import kr.co.jhta.project.chat.action.AjaxTest;
 import kr.co.jhta.project.chat.action.ChatActionCommand;
 
@@ -34,7 +35,9 @@ public class ChattingController extends HttpServlet {
 				ac = new ChatActionCommand();
 			} else if(cmd.equals("addChatRoom")) {
 				ac = new AddChatRoomActionCommad();
-			} 
+			} else if(cmd.equals("addOk")) {
+				ac = new AddRoomOkActionCommand();
+			}
 			
 			
 			
