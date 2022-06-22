@@ -58,7 +58,7 @@ public class MainActionCommand implements Action {
 				if(cdto.getType() ==  1) {
 					color = "#257e4a";
 				} else {
-					color = "#999999";
+					color = "#316CF4";
 				}
 				jsonObj.put("color", color);
 				array.add(jsonObj);

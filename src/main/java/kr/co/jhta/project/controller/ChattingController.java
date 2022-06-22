@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONObject;
 
 import kr.co.jhta.project.board.action.ScrapActionCommand;
+import kr.co.jhta.project.chat.action.AddChatRoomActionCommad;
 import kr.co.jhta.project.chat.action.AjaxTest;
 import kr.co.jhta.project.chat.action.ChatActionCommand;
 
@@ -31,7 +32,8 @@ public class ChattingController extends HttpServlet {
 			
 			if(cmd==null || cmd.equals("chat")) {
 				ac = new ChatActionCommand();
-			} else if(cmd.equals("ajax")) {
+			} else if(cmd.equals("addChatRoom")) {
+				ac = new AddChatRoomActionCommad();
 			} 
 			
 			

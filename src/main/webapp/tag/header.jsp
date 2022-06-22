@@ -49,7 +49,7 @@
 				<a class="nav-link" href="MyProjectRez.do?cmd=rez">회의실 예약</a> 
 				<a class="nav-link" href="MyProjectChatting.do?cmd=chat">채팅</a>
 				<a class="nav-link" href="MyProjectCallendar.do?cmd=cal">일정(Callendar)</a> 
-				<a class="nav-link" href="#">전자결제</a>
+				<a class="nav-link" href="MyProjectDoc.do?cmd=doc">전자결제</a>
 			</nav>
 		</div>
 </body>

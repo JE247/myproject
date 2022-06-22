@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.jhta.mapper.document">
+
+	<select id="getOne" resultType="docvo" parameterType="int">
+		SELECT
+		DCNO, ENO, DCONTENTS, TO_CHAR(DREGDATE, 'YYYY-MM-DD') DREGDATE, DTYPE
+		FROM DOCUMENT
+		WHERE DCNO = #{dcno}
+	</select>
+
+	<select id="myList" resultType="docvo" parameterType="int">
+		SELECT
+		DCNO, ENO, DCONTENTS, TO_CHAR(DREGDATE, 'YYYY-MM-DD') DREGDATE, DTYPE
+		FROM DOCUMENT
+		WHERE ENO = #{eno}
+	</select>
+
+	<select id="myListFilter" resultType="docvo" parameterType="avo">
+		SELECT
+		DCNO, ENO, DCONTENTS, TO_CHAR(DREGDATE, 'YYYY-MM-DD') DREGDATE, DTYPE
+		FROM DOCUMENT
+		WHERE ENO = #{eno} AND
+		DCNO IN (SELECT DCNO FROM APPROVAL WHERE STATUS = #{status})
+	</select>
+
+	<select id="findNum" parameterType="int" resultType="int">
+		SELECT
+		MAX(DCNO) FROM DOCUMENT WHERE ENO = #{eno}
+	</select>
+
+	<insert id="addOne" parameterType="docvo">
+		INSERT INTO DOCUMENT
+		VALUES(DOCUMENT_DNO_SEQ.NEXTVAL, #{eno}, #{dcontents}, SYSDATE,
+		#{dtype})
+	</insert>
+	
+	<delete id="delete" parameterType="int">
+		DELETE DOCUMENT WHERE DCNO = ${dcno}
+	</delete>
+
+</mapper>

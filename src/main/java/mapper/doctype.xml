@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="kr.co.jhta.mapper.doctype">
+
+	<select id="getAll" resultType="tvo">
+		SELECT DTYPE, DTITLE FROM DOCTYPE
+	</select>
+	
+	<select id="getOne" parameterType="int" resultType="tvo">
+		SELECT DTYPE, DTITLE FROM DOCTYPE WHERE DTYPE = #{dtype}
+	</select>
+
+</mapper>

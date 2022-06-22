@@ -12,40 +12,40 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <title>MyProject</title>
 <script>
-    $(function(){
-        const fileInput = $("#file_input"); // jquery로 파일을 가져올 경우 앞에 [0]으로 정확한 선택자를 기입해준다.
-        var preview = $(".preview");
-        var removeFile = $(".fileRemove");
+$(function(){
+    const fileInput = $("#file_input"); // jquery로 파일을 가져올 경우 앞에 [0]으로 정확한 선택자를 기입해준다.
+    var preview = $(".preview");
+    var removeFile = $(".fileRemove");
 
-        fileInput.on("change", function(){
-	        var list="";
-            var files = Array.from(fileInput[0].files);
-            files.forEach(function(file){
-                list += `<p id = "\${file.lastModified}">\${file.name}
-                            <button data-index="\${file.lastModified}" class="fileRemove" 
-                                onclick = "removeFile(this);"></button> </p>`;
-                preview.html(list);
-            });
+    fileInput.on("change", function(){
+        var list="";
+        var files = Array.from(fileInput[0].files);
+        files.forEach(function(file){
+            list += `<p id = "\${file.lastModified}">\${file.name}
+                        <button data-index="\${file.lastModified}" class="fileRemove" 
+                            onclick = "removeFile(this);"></button> </p>`;
+            preview.html(list);
         });
     });
+});
 
-    function removeFile(m){
-        var removeTargetId = m.dataset.index;
-        var removeTarget = $("#"+removeTargetId);
+function removeFile(m){
+    var removeTargetId = m.dataset.index;
+    var removeTarget = $("#"+removeTargetId);
 
-        var files = $("#file_input")[0].files;
+    var files = $("#file_input")[0].files;
 
-        var dataTranster = new DataTransfer();
+    var dataTranster = new DataTransfer();
 
-        Array.from(files).filter(function(file){
-            return file.lastModified != removeTargetId
-        }).forEach(function(file){
-            dataTranster.items.add(file);
-        });
-        
-        document.querySelector("#file_input").files = dataTranster.files;
-        removeTarget.remove();
-    }
+    Array.from(files).filter(function(file){
+        return file.lastModified != removeTargetId
+    }).forEach(function(file){
+        dataTranster.items.add(file);
+    });
+    
+    document.querySelector("#file_input").files = dataTranster.files;
+    removeTarget.remove();
+}
 </script>
 <style>
     * {
@@ -58,7 +58,7 @@
     }
 
     .contents {
-        margin: 50px 0px;
+        margin: 80px 0px;
         text-align: center;
     }
     .fileRemove{

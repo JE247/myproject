@@ -10,7 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.co.jhta.project.reservation.action.AddOkActionCommand;
+import kr.co.jhta.project.reservation.action.AddRezFormActionCommad;
 import kr.co.jhta.project.reservation.action.RezActionCommand;
+import kr.co.jhta.project.reservation.action.DeleteActionCommand;
 
 
 
@@ -31,7 +34,13 @@ public class ReservationController extends HttpServlet {
 
 			if (cmd == null || cmd.equals("rez")) {
 				ac = new RezActionCommand();
-			} 
+			} else if (cmd.equals("addRez")) {
+				ac = new AddRezFormActionCommad();
+			} else if (cmd.equals("addOk")) {
+				ac = new AddOkActionCommand();
+			} else if (cmd.equals("delete")) {
+				ac = new DeleteActionCommand();
+			}
 
 			url = ac.execute(request, response);
 

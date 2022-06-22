@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.jhta.mapper.reservation">
+
+	<select id="todayOneRez" resultType="rvo" parameterType="rvo">
+		SELECT
+		REZNO, ENO, ROOMNO, TO_CHAR(REZDATE, 'YYYY-MM-DD') REZDATE, STARTTIME,
+		ENDTIME, PEOPLE, MEMO
+		FROM RESERVATION
+		WHERE TO_CHAR(REZDATE,
+		'YYYY-MM-DD') = #{rezDate} AND ROOMNO = #{roomNo}
+	</select>
+
+	<select id="timeCheck" resultType="int" parameterType="rvo">
+		SELECT
+		COUNT(*)
+		FROM RESERVATION
+		WHERE TO_CHAR(REZDATE, 'YYYY-MM-DD') =
+		#{rezDate}
+		AND ROOMNO = #{roomNo}
+		AND STARTTIME &lt; #{endTime}
+		AND ENDTIME &gt;
+		#{startTime}
+	</select>
+
+	<select id="myRez" resultType="rvo" parameterType="int">
+		SELECT REZNO,
+		ENO, ROOMNO, TO_CHAR(REZDATE, 'YYYY-MM-DD') REZDATE, STARTTIME,
+		ENDTIME, PEOPLE, MEMO
+		FROM RESERVATION
+		WHERE ENO = #{eno}
+	</select>
+
+	<select id="getOne" resultType="rvo" parameterType="int">
+		SELECT REZNO,
+		ENO, ROOMNO, TO_CHAR(REZDATE, 'YYYY-MM-DD') REZDATE, STARTTIME,
+		ENDTIME, PEOPLE, MEMO
+		FROM RESERVATION
+		WHERE REZNO = #{resNo}
+	</select>
+
+	<insert id="addRez" parameterType="rvo">
+		INSERT INTO RESERVATION
+		VALUES (RESERVATION_RNO_SEQ.NEXTVAL, #{eno}, #{roomNo}, #{rezDate},
+		#{startTime}, #{endTime}, #{people}, #{memo})
+	</insert>
+	
+	<delete id="deleteOne" parameterType="int">
+		DELETE RESERVATION WHERE REZNO = #{rez}
+	</delete>
+</mapper>

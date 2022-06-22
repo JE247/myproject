@@ -18,6 +18,10 @@
 		OFFICEWORKER WHERE ENO = #{eno}
 	</select>
 	
+	<select id="myManager" resultType="ovo">
+		SELECT * FROM OFFICEWORKER WHERE AUTH = 1
+	</select>
+	
 	<select id="getposition" resultType="String">
 		SELECT POSITION FROM OFFICEWORKER GROUP BY POSITION
 	</select>

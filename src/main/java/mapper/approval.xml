@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="kr.co.jhta.mapper.approval">
+
+	<select id="appList" parameterType="int" resultType="avo">
+		SELECT ANO, DCNO, STATUS, ENO, TO_CHAR(APPDATE, 'YYYY-MM-DD') APPDATE, REASON
+		FROM APPROVAL
+		WHERE ENO = #{eno} AND STATUS = 0
+	</select>
+	
+	<select id="getOne" parameterType="int" resultType="avo">
+		SELECT ANO, DCNO, STATUS, ENO, TO_CHAR(APPDATE, 'YYYY-MM-DD') APPDATE, REASON
+		FROM APPROVAL
+		WHERE DCNO = #{dcno}
+	</select>
+
+	<insert id="addOne" parameterType="avo">
+		INSERT INTO APPROVAL
+		VALUES(APPROVAL_ANO_SEQ.NEXTVAL, #{dcno}, 0, #{eno}, '', #{reason})
+	</insert>
+	
+	<update id="appOne" parameterType="avo">
+		UPDATE APPROVAL
+		SET STATUS = #{status}, REASON = #{reason}, APPDATE = SYSDATE
+		WHERE DCNO = #{dcno}
+	</update>
+
+</mapper>
