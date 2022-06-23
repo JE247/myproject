@@ -17,6 +17,8 @@ import kr.co.jhta.project.chat.action.AddChatRoomActionCommad;
 import kr.co.jhta.project.chat.action.AddRoomOkActionCommand;
 import kr.co.jhta.project.chat.action.AjaxTest;
 import kr.co.jhta.project.chat.action.ChatActionCommand;
+import kr.co.jhta.project.chat.action.ChatInterActionCommand;
+import kr.co.jhta.project.chat.action.ExitChatActionCommand;
 
 @WebServlet("/MyProjectChatting.do")
 public class ChattingController extends HttpServlet {
@@ -37,6 +39,10 @@ public class ChattingController extends HttpServlet {
 				ac = new AddChatRoomActionCommad();
 			} else if(cmd.equals("addOk")) {
 				ac = new AddRoomOkActionCommand();
+			} else if(cmd.equals("chatInter")) {
+				ac = new ChatInterActionCommand();
+			} else if(cmd.equals("exitchat")) {
+				ac = new ExitChatActionCommand();
 			}
 			
 			

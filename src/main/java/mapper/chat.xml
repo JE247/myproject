@@ -5,7 +5,7 @@
 <mapper namespace="kr.co.jhta.mapper.chat">
 
 	<select id="myChat" resultType="chatroomvo" parameterType="int">
-		SELECT CHATNO, CHATNAME FROM CHAT 
+		SELECT CHATNO CNO, CHATNAME, ENO FROM CHAT 
 		WHERE CHATNO IN 
 						(SELECT CHATNO FROM CHAT_PERSON WHERE ENO = #{eno})
 	</select>

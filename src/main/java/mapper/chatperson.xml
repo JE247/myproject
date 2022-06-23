@@ -3,10 +3,25 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
  <mapper namespace="kr.co.jhta.mapper.chatperson">
+ 
+ 	<select id="countPerson" parameterType="int" resultType="int">
+ 		SELECT COUNT(PNO) FROM CHAT_PERSON WHERE CHATNO = #{chatno}
+ 	</select>
+ 	
+ 	<select id="findPerson" parameterType="chatmsgvo" resultType="chatpersonvo">
+ 		SELECT PNO, ENO, CHATNO FROM CHAT_PERSON
+ 		WHERE CHATNO = #{chatno} AND 
+ 		ENO != #{eno}
+ 	</select>
  	
  	<insert id="addPerson" parameterType="chatpersonvo">
  		INSERT INTO CHAT_PERSON
  		VALUES(CHAT_PERSON_PNO_SEQ.NEXTVAL, #{eno}, #{chatno})
  	</insert>
+ 	
+ 	<delete id="exit" parameterType="chatpersonvo">
+ 		DELETE CHAT_PERSON
+ 		WHERE CHATNO = #{chatno} AND ENO = #{eno}
+ 	</delete>
  
  </mapper>

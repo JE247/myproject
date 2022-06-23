@@ -12,17 +12,11 @@
 <script>
 $(function(){
 	$(".table tr").click(function(){
-		console.log("test");
 		var tr = $(this); 
 		var td = tr.children();
 		
-
-		
 		var eno = td.eq(0).text();
 		var name = td.eq(1).text();
-		
-		console.log(eno);
-		console.log(name);
 		
 		opener.setChildValue(eno, name);
 		window.close();

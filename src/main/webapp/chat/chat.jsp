@@ -31,6 +31,26 @@ $(function(){
     	
     	window.open(url, name, option);
 	});
+	
+	$(".table tr").on('click', function(){
+		
+		var tr = $(this); 
+		var td = tr.children();
+		
+		var cno = td.eq(0).text();
+		
+		/* 팝업창 만들기 */
+		
+		var popupWidth = 540;
+    	var popupHeight = 600;
+    	var popupX = (window.screen.width / 2) - (popupWidth / 2);
+    	var popupY= (window.screen.height / 2) - (popupHeight / 2);
+    	var url = "MyProjectChatting.do?cmd=chatInter&cno="+cno;
+    	var name = "chatInter";
+    	var option = "width = 540px, height = 600px, top = "+popupY+", left = "+popupX+", resizable=no, location = no";
+    	
+    	window.open(url, name, option);
+	})
 })
 </script>
 <style>
@@ -72,7 +92,7 @@ $(function(){
 			<br><br><br>
 			<div class="button"><input type="button" value="채팅방 생성" id="add" /></div>
 			<br>
-			<table id="chatTable" class="table table-striped table-bordered">
+			<table id="chatTable" class="table table-striped table-bordered  table-hover">
 				<tr class="table-dark">
 					<th colspan="5">나의 채팅방</th>
 				</tr>
@@ -83,6 +103,20 @@ $(function(){
 					<th width="30%">마지막메시지</th>
 					<th width="25%">마지막 전송시간</th>
 				</tr>
+				<c:forEach var="vo" items="${chatMain}">
+					<tr>
+						<td>${vo.cno }</td>
+						<td>${vo.person }</td>
+						<td>${vo.chatName }</td>
+						<td>${vo.chatMessage }</td>
+						<td style="position: relative;">${vo.chatTime } 
+							<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+									${vo.noread }
+									<span class="visually-hidden">unread messages</span>
+							</span>
+						</td>
+					</tr>
+				</c:forEach>
             </table>
 		</div>
 	</div>

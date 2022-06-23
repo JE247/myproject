@@ -19,6 +19,8 @@
 		<typeAlias type="kr.co.jhta.project.dto.ApprovalDTO" alias="avo"/>
 		<typeAlias type="kr.co.jhta.project.dto.ChatDTO" alias="chatroomvo"/>
 		<typeAlias type="kr.co.jhta.project.dto.ChatPersonDTO" alias="chatpersonvo"/>
+		<typeAlias type="kr.co.jhta.project.dto.ChatMessageDTO" alias="chatmsgvo"/>
+		<typeAlias type="kr.co.jhta.project.dto.ChatStatusDTO" alias="statusvo"/>
 		<typeAlias type="kr.co.jhta.project.dto.EnoBnoDTO" alias="ebno"/>
 		<typeAlias type="kr.co.jhta.project.dto.PagingSearch" alias="ps"/>
 		<typeAlias type="kr.co.jhta.project.dto.DateEno" alias="de"/>
@@ -45,6 +47,8 @@
 		<mapper resource="mapper/reservation.xml" />
 		<mapper resource="mapper/chat.xml" />
 		<mapper resource="mapper/chatperson.xml" />
+		<mapper resource="mapper/chatmessage.xml" />
+		<mapper resource="mapper/chatstatus.xml" />
 		<mapper resource="mapper/doctype.xml" />
 		<mapper resource="mapper/doc.xml" />
 		<mapper resource="mapper/approval.xml" />

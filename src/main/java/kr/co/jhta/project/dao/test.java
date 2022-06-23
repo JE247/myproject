@@ -1,33 +1,31 @@
 package kr.co.jhta.project.dao;
 
-import java.util.List;
-
-import kr.co.jhta.project.dto.BoardDTO;
-import kr.co.jhta.project.dto.DepartmentDTO;
-import kr.co.jhta.project.dto.DocTypeDTO;
-import kr.co.jhta.project.dto.EnoBnoDTO;
-import kr.co.jhta.project.dto.FileDTO;
-import kr.co.jhta.project.dto.MeetingRoomDTO;
-import kr.co.jhta.project.dto.OfficeWorkerDTO;
-import kr.co.jhta.project.dto.PagingSearch;
-import kr.co.jhta.project.dto.ReservationDTO;
-import kr.co.jhta.project.dto.ScrapDTO;
+import kr.co.jhta.project.dto.ChatMessageDTO;
 
 public class test {
 	public static void main(String[] args) {
-		
-//		MeetingRoomDAO dao = new MeetingRoomDAO();
-//		List<MeetingRoomDTO> list = dao.getAll();
+//
+//		ChatPersonDAO personDao = new ChatPersonDAO();
+//		ChatMessageDAO dao = new ChatMessageDAO();
 //		
-//		for(MeetingRoomDTO dto : list) {
-//			System.out.println(dto.getRoomName());
+//		ChatMessageDTO chat = new ChatMessageDTO();
+//		chat.setMno(10);
+//		chat.setChatno(3);
+//
+//		List<ChatMessageDTO> list = dao.realTime(chat);
+//
+//		for (ChatMessageDTO dto : list) {
+//			System.out.println(dto.getMessage());
 //		}
 		
-		DocTypeDAO dao = new DocTypeDAO();
-		List<DocTypeDTO> list = dao.getAll();
+		ChatStatusDAO dao = new ChatStatusDAO();
+		ChatMessageDTO dto = new ChatMessageDTO();
+		dto.setEno(20220003);
+		dto.setChatno(3);
 		
-		for(DocTypeDTO dto1 : list) {
-			System.out.println(dto1.getDtitle());
-		}
+		int num = dao.noRead(dto);
+		System.out.println(num);
+		
+
 	}
 }

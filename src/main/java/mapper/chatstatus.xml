@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="kr.co.jhta.mapper.chatstatus">
+
+	<select id="noRead" parameterType="chatmsgvo" resultType="int">
+		SELECT SUM(STATUS) 
+		FROM CHAT_STATUS 
+		WHERE ENO = #{eno} AND 
+		MNO IN (SELECT MNO FROM CHAT_MESSAGE WHERE CHATNO = #{chatno})
+	</select>
+
+	<insert id="addStatus" parameterType="statusvo">
+		INSERT INTO CHAT_STATUS 
+		VALUES(CHAT_STATUS_SNO_SEQ.NEXTVAL, #{mno}, #{eno}, 1)
+	</insert>
+	
+	<update id="readAll" parameterType="chatmsgvo">
+		UPDATE CHAT_STATUS SET STATUS = 0
+		WHERE ENO = #{eno} AND 
+		MNO IN (SELECT MNO FROM CHAT_MESSAGE WHERE CHATNO = #{chatno})
+	</update>
+	
+	
+</mapper>
