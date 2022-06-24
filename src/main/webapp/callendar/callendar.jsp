@@ -56,6 +56,11 @@
   </script>
 <title>MyProject</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+    
+    h2{
+    	font-family: 'Jua', sans-serif;
+    }
     * {
         margin: 0px;
         padding: 0px;

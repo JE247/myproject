@@ -31,7 +31,11 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 <title>MyProject</title>
 <style>
+
 @charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
 *{
 	margin: 0px;
 	padding: 0px;
@@ -124,11 +128,15 @@ document.addEventListener('DOMContentLoaded', function() {
 	width: 100%;
 }
 
-.banner {
+.banner{
 	width: 850px;
 	margin: 30px auto;
-	background-color: aqua;
-	height: 200px;
+	height: 250px;
+}
+
+.banner > img {
+	width: 850px;
+	height: 250px;
 }
 
 .board {
@@ -168,6 +176,12 @@ li > a, td > a {
 	text-decoration: none;
 	color: black;
 }
+.scraplist > h6 {
+	font-family: 'Jua', sans-serif;
+}
+.board > h3 {
+	font-family: 'Jua', sans-serif;
+}
 </style>
 </head>
 <body>
@@ -195,17 +209,19 @@ li > a, td > a {
                 	<h6>스크랩 리스트</h6> <br>
 						<ul class="list-group">
 							<c:forEach var="vo" items="${scrap }">
-							  <li class="list-group-item"><a href="MyProjectBoard.do?cmd=detail&bno=${vo.bno }">${vo.bno}) ${vo.title}</a></li>
+							  <li class="list-group-item"><a href="MyProjectBoard.do?cmd=detail&bno=${vo.bno }">
+							  							<span style="font-size: 1.3em; color: gold;">★</span> ${vo.title}</a></li>
 							</c:forEach>
 						</ul>
                 </div>
             </div>
             <div class="main">
                 <div class="banner">
+                	<img src="images/banner.jpg" alt="" />
                 </div>
                 <div class="board">
                 <br><br>
-                    <h4>최신 글 리스트</h4>
+                    <h3>최신 글 리스트</h3>
                     <table class="table">
                         <tr>
                             <th>게시번호</th>
