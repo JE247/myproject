@@ -41,6 +41,6 @@ public class AddOkActionCommand implements Action {
 			dao.addRez(dto);
 			
 		}
-		return "callendar/popupOk.jsp";
+		return "calendar/popupOk.jsp";
 	}
 }

@@ -1,4 +1,4 @@
-package kr.co.jhta.project.callendar.action;
+package kr.co.jhta.project.calendar.action;
 
 import java.util.List;
 
@@ -10,11 +10,11 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import kr.co.jhta.project.controller.Action;
-import kr.co.jhta.project.dao.CallendarDAO;
-import kr.co.jhta.project.dto.CallendarDTO;
+import kr.co.jhta.project.dao.CalendarDAO;
+import kr.co.jhta.project.dto.CalendarDTO;
 import kr.co.jhta.project.dto.OfficeWorkerDTO;
 
-public class CallendarActionCommand implements Action {
+public class CalendarActionCommand implements Action {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) {
@@ -26,12 +26,12 @@ public class CallendarActionCommand implements Action {
 		if(obj != null) {
 			OfficeWorkerDTO dto = (OfficeWorkerDTO)obj;
 			
-			CallendarDAO cdao = new CallendarDAO();
-			List<CallendarDTO> list = cdao.getMyCal(dto.getEno());
+			CalendarDAO cdao = new CalendarDAO();
+			List<CalendarDTO> list = cdao.getMyCal(dto.getEno());
 			
 			JSONArray array = new JSONArray();
 			
-			for(CallendarDTO cdto : list) {
+			for(CalendarDTO cdto : list) {
 				JSONObject jsonObj = new JSONObject();
 				jsonObj.put("title", cdto.getTitle());
 				jsonObj.put("start", cdto.getStartDate());
@@ -52,7 +52,7 @@ public class CallendarActionCommand implements Action {
 			
 		}
 		
-		return "callendar/callendar.jsp";
+		return "calendar/calendar.jsp";
 	}
 
 }

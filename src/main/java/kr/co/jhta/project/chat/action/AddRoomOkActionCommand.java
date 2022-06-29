@@ -43,7 +43,7 @@ public class AddRoomOkActionCommand implements Action {
 			}
 		}
 		
-		return "callendar/popupOk.jsp";
+		return "calendar/popupOk.jsp";
 	}
 
 }

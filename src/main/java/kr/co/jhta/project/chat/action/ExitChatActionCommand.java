@@ -23,6 +23,6 @@ public class ExitChatActionCommand implements Action {
 		ChatPersonDAO dao = new ChatPersonDAO();
 		dao.exit(dto);
 		
-		return "callendar/popupOk.jsp";
+		return "calendar/popupOk.jsp";
 	}
 }

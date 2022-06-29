@@ -35,7 +35,7 @@
     	var popupHeight = 500;
     	var popupX = (window.screen.width / 2) - (popupWidth / 2);
     	var popupY= (window.screen.height / 2) - (popupHeight / 2);
-    	var url = "MyProjectCallendar.do?cmd=addCal";
+    	var url = "MyProjectCalendar.do?cmd=addCal";
     	var name = "addCallendar";
     	var option = "width = 500px, height = 500px, top = "+popupY+", left = "+popupX+", resizable=no, location = no";
     	
@@ -47,7 +47,7 @@
     	var popupHeight = 500;
     	var popupX = (window.screen.width / 2) - (popupWidth / 2);
     	var popupY= (window.screen.height / 2) - (popupHeight / 2);
-    	var url = "MyProjectCallendar.do?cmd=modifyCal";
+    	var url = "MyProjectCalendar.do?cmd=modifyCal";
     	var name = "Callendar";
     	var option = "width = 800px, height = 500px, top = "+popupY+", left = "+popupX+", resizable=no, location = no";
     	

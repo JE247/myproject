@@ -73,7 +73,7 @@
 <body>
 <div class="container">
 	<div class="contents">
-		<form action="MyProjectCallendar.do">
+		<form action="MyProjectCalendar.do">
 		<input type="hidden" id="cmd" name="cmd" value="modifyCal" />
 		<table class="table">
 			<tr>

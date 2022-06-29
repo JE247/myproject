@@ -1,11 +1,11 @@
-package kr.co.jhta.project.callendar.action;
+package kr.co.jhta.project.calendar.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.jhta.project.controller.Action;
-import kr.co.jhta.project.dao.CallendarDAO;
-import kr.co.jhta.project.dto.CallendarDTO;
+import kr.co.jhta.project.dao.CalendarDAO;
+import kr.co.jhta.project.dto.CalendarDTO;
 
 public class AddOkActionCommad implements Action {
 
@@ -27,9 +27,9 @@ public class AddOkActionCommad implements Action {
 		String loc = req.getParameter("loc");
 		String contents = req.getParameter("contents");
 
-		CallendarDAO dao = new CallendarDAO();
+		CalendarDAO dao = new CalendarDAO();
 
-		CallendarDTO dto = new CallendarDTO();
+		CalendarDTO dto = new CalendarDTO();
 		
 		dto.setEno(eno);
 		dto.setTitle(title);
@@ -41,7 +41,7 @@ public class AddOkActionCommad implements Action {
 		
 		dao.addCal(dto);
 
-		return "callendar/popupOk.jsp";
+		return "calendar/popupOk.jsp";
 	}
 
 }

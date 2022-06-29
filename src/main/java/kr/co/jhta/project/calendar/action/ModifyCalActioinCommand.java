@@ -1,4 +1,4 @@
-package kr.co.jhta.project.callendar.action;
+package kr.co.jhta.project.calendar.action;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import kr.co.jhta.project.controller.Action;
-import kr.co.jhta.project.dao.CallendarDAO;
-import kr.co.jhta.project.dto.CallendarDTO;
+import kr.co.jhta.project.dao.CalendarDAO;
+import kr.co.jhta.project.dto.CalendarDTO;
 import kr.co.jhta.project.dto.DateEno;
 import kr.co.jhta.project.dto.OfficeWorkerDTO;
 
@@ -31,8 +31,8 @@ public class ModifyCalActioinCommand implements Action {
 		if (obj != null) {
 			OfficeWorkerDTO dto = (OfficeWorkerDTO) obj;
 
-			CallendarDAO cdao = new CallendarDAO();
-			List<CallendarDTO> list = null;
+			CalendarDAO cdao = new CalendarDAO();
+			List<CalendarDTO> list = null;
 			
 			if(year == null && month == null) {
 				list = cdao.getMyCal(dto.getEno());
@@ -54,7 +54,7 @@ public class ModifyCalActioinCommand implements Action {
 			
 
 		}
-		return "callendar/myCal.jsp";
+		return "calendar/myCal.jsp";
 	}
 
 }

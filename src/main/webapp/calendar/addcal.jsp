@@ -63,7 +63,7 @@
 </head>
 <body>
 <div class="container">
-	<form action="MyProjectCallendar.do?cmd=addCalOk" method="post">
+	<form action="MyProjectCalendar.do?cmd=addCalOk" method="post">
 		<input type="hidden" name="eno" value="${logindto.eno}" />
 		<table class="table">
 			<tr>

@@ -11,10 +11,10 @@ import org.json.simple.JSONObject;
 
 import kr.co.jhta.project.controller.Action;
 import kr.co.jhta.project.dao.BoardDAO;
-import kr.co.jhta.project.dao.CallendarDAO;
+import kr.co.jhta.project.dao.CalendarDAO;
 import kr.co.jhta.project.dao.OfficeWorkerDAO;
 import kr.co.jhta.project.dto.BoardDTO;
-import kr.co.jhta.project.dto.CallendarDTO;
+import kr.co.jhta.project.dto.CalendarDTO;
 import kr.co.jhta.project.dto.OfficeWorkerDTO;
 import kr.co.jhta.project.dto.PagingSearch;
 
@@ -42,12 +42,12 @@ public class MainActionCommand implements Action {
 			List<BoardDTO> list = bdao.getAll(ps);
 			List<BoardDTO> scrap = bdao.scrapList(maindto.getEno());
 			
-			CallendarDAO cdao = new CallendarDAO();
-			List<CallendarDTO> calList = cdao.getMyCal(dto.getEno());
+			CalendarDAO cdao = new CalendarDAO();
+			List<CalendarDTO> calList = cdao.getMyCal(dto.getEno());
 			
 			JSONArray array = new JSONArray();
 			
-			for(CallendarDTO cdto : calList) {
+			for(CalendarDTO cdto : calList) {
 				JSONObject jsonObj = new JSONObject();
 				jsonObj.put("title", cdto.getTitle());
 				jsonObj.put("start", cdto.getStartDate());

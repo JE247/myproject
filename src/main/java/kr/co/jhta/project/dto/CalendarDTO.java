@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CallendarDTO {
+public class CalendarDTO {
 	
 	int cno;
 	int eno;

@@ -10,12 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.simple.JSONObject;
-
-import kr.co.jhta.project.board.action.ScrapActionCommand;
 import kr.co.jhta.project.chat.action.AddChatRoomActionCommad;
 import kr.co.jhta.project.chat.action.AddRoomOkActionCommand;
-import kr.co.jhta.project.chat.action.AjaxTest;
 import kr.co.jhta.project.chat.action.ChatActionCommand;
 import kr.co.jhta.project.chat.action.ChatInterActionCommand;
 import kr.co.jhta.project.chat.action.ExitChatActionCommand;

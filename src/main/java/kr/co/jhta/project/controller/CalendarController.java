@@ -9,16 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.co.jhta.project.callendar.action.AddCalActionCommand;
-import kr.co.jhta.project.callendar.action.AddOkActionCommad;
-import kr.co.jhta.project.callendar.action.CallendarActionCommand;
-import kr.co.jhta.project.callendar.action.DeleteActionCommand;
-import kr.co.jhta.project.callendar.action.ModifyCalActioinCommand;
-import kr.co.jhta.project.callendar.action.ModifyFormActionCommand;
-import kr.co.jhta.project.callendar.action.UpdateOkActionCommand;
+import kr.co.jhta.project.calendar.action.AddCalActionCommand;
+import kr.co.jhta.project.calendar.action.AddOkActionCommad;
+import kr.co.jhta.project.calendar.action.CalendarActionCommand;
+import kr.co.jhta.project.calendar.action.DeleteActionCommand;
+import kr.co.jhta.project.calendar.action.ModifyCalActioinCommand;
+import kr.co.jhta.project.calendar.action.ModifyFormActionCommand;
+import kr.co.jhta.project.calendar.action.UpdateOkActionCommand;
 
-@WebServlet("/MyProjectCallendar.do")
-public class CallendarController extends HttpServlet {
+@WebServlet("/MyProjectCalendar.do")
+public class CalendarController extends HttpServlet {
 	
 	Action ac = null;
 
@@ -31,7 +31,7 @@ public class CallendarController extends HttpServlet {
 		String url = "";
 		
 		if(cmd == null || cmd.equals("cal")) {
-			ac = new CallendarActionCommand();
+			ac = new CalendarActionCommand();
 		} else if(cmd.equals("addCal")) {
 			ac = new AddCalActionCommand();
 		} else if(cmd.equals("addCalOk")) {

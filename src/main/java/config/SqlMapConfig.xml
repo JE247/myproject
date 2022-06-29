@@ -11,7 +11,7 @@
 		<typeAlias type="kr.co.jhta.project.dto.BoardDTO" alias="bvo"/>
 		<typeAlias type="kr.co.jhta.project.dto.FileDTO" alias="fvo"/>
 		<typeAlias type="kr.co.jhta.project.dto.ScrapDTO" alias="svo"/>
-		<typeAlias type="kr.co.jhta.project.dto.CallendarDTO" alias="cvo"/>
+		<typeAlias type="kr.co.jhta.project.dto.CalendarDTO" alias="cvo"/>
 		<typeAlias type="kr.co.jhta.project.dto.MeetingRoomDTO" alias="mvo"/>
 		<typeAlias type="kr.co.jhta.project.dto.ReservationDTO" alias="rvo"/>
 		<typeAlias type="kr.co.jhta.project.dto.DocTypeDTO" alias="tvo"/>
@@ -42,7 +42,7 @@
 		<mapper resource="mapper/officeboard.xml" />
 		<mapper resource="mapper/boardfile.xml" />
 		<mapper resource="mapper/scrap.xml" />
-		<mapper resource="mapper/callendar.xml" />
+		<mapper resource="mapper/calendar.xml" />
 		<mapper resource="mapper/meetingroom.xml" />
 		<mapper resource="mapper/reservation.xml" />
 		<mapper resource="mapper/chat.xml" />

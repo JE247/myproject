@@ -5,40 +5,40 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import kr.co.jhta.project.dto.CallendarDTO;
+import kr.co.jhta.project.dto.CalendarDTO;
 import kr.co.jhta.project.dto.DateEno;
 
-public class CallendarDAO {
+public class CalendarDAO {
 	
 	SqlSessionFactory factory;
 	
-	public CallendarDAO() {
+	public CalendarDAO() {
 		factory = ConnectionManager.getInstance().getFactory();
 	}
 	
-	public List<CallendarDTO> getMyCal(int eno){
+	public List<CalendarDTO> getMyCal(int eno){
 		
 		SqlSession ss = factory.openSession(true);
-		List<CallendarDTO> list = ss.selectList("kr.co.jhta.mapper.callendar.getMyCal", eno);
+		List<CalendarDTO> list = ss.selectList("kr.co.jhta.mapper.callendar.getMyCal", eno);
 		ss.close();
 		return list;
 	}
 	
-	public List<CallendarDTO> getMyCalFilter(DateEno de) {
+	public List<CalendarDTO> getMyCalFilter(DateEno de) {
 		SqlSession ss = factory.openSession(true);
-		List<CallendarDTO> list = ss.selectList("kr.co.jhta.mapper.callendar.getMyCalFilter", de);
+		List<CalendarDTO> list = ss.selectList("kr.co.jhta.mapper.callendar.getMyCalFilter", de);
 		ss.close();
 		return list;
 	}
 	
-	public CallendarDTO getOne(int cno) {
+	public CalendarDTO getOne(int cno) {
 		SqlSession ss = factory.openSession(true);
-		CallendarDTO dto = ss.selectOne("kr.co.jhta.mapper.callendar.getOne", cno);
+		CalendarDTO dto = ss.selectOne("kr.co.jhta.mapper.callendar.getOne", cno);
 		ss.close();
 		return dto;
 	}
 	
-	public void updateOk(CallendarDTO dto) {
+	public void updateOk(CalendarDTO dto) {
 		SqlSession ss = factory.openSession(true);
 		ss.update("kr.co.jhta.mapper.callendar.updateOk",dto);
 		ss.close();
@@ -50,7 +50,7 @@ public class CallendarDAO {
 		ss.close();
 	}
 	
-	public void addCal(CallendarDTO dto) {
+	public void addCal(CalendarDTO dto) {
 		SqlSession ss = factory.openSession(true);
 		ss.insert("kr.co.jhta.mapper.callendar.addCal", dto);
 		ss.close();

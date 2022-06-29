@@ -1,4 +1,4 @@
-package kr.co.jhta.project.callendar.action;
+package kr.co.jhta.project.calendar.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,7 +9,7 @@ public class AddCalActionCommand implements Action {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) {
-		return "callendar/addcal.jsp";
+		return "calendar/addcal.jsp";
 	}
 
 }
